@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Order Maintenance</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form *ngIf="orderModel" #addUpdateFrm="ngForm" (ngSubmit)="saveOrUpdate(addUpdateFrm.valid)">
+    <div class="form-group">
+      <label>{{orderModel._id}}</label>
+    </div>
+    <div class="form-group" [ngClass]="{'has-danger':store.invalid && isFormSubmited}">
+      <label>Store</label>
+      <select class="form-control" id="store" required #store="ngModel" [(ngModel)]="orderModel.store" name="store">
+        <option [value]="'Tesco'">Tesco</option>
+        <option [value]="'Whole Foods'">Whole Foods</option>
+        <option [value]="'Target'">Target</option>
+      </select>
+      <div *ngIf="store.invalid && isFormSubmited" class="invalid-feedback">
+        Store is Required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Date</label>
+      <input type="text"
+             placeholder="Datepicker"
+             class="form-control"
+             name="created"
+             [(ngModel)]="orderModel.created"
+             [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+             bsDatepicker>
+    </div>
+    <div class="form-group" [ngClass]="{'has-danger':total.invalid && isFormSubmited}">
+      <label>Total</label>
+      <input type="number" [(ngModel)]="orderModel.total" name="total" #total="ngModel" class="form-control"
+             required>
+      <div *ngIf="total.invalid && isFormSubmited" class="invalid-feedback">
+        Total is Required.
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-danger':discount.invalid && isFormSubmited}">
+      <label>Discount</label>
+      <input type="number" [(ngModel)]="orderModel.discount" name="discount" #discount="ngModel" class="form-control"
+             required>
+      <div *ngIf="discount.invalid && isFormSubmited" class="invalid-feedback">
+        Discount is Required.
+      </div>
+    </div>
+    <input type="submit" class="btn btn-primary" [ngClass]="mode=='edit'?'btn-warning':'btn-primary'"
+           value="{{btnText}}"/>
+
+  </form>
+</div>
+
+
+

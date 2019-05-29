@@ -1,0 +1,26 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.relative {
+  position: relative !important;
+}
+
+.has-danger .form-control {
+  color: #d9534f !important;
+}
+
+.has-danger .form-control {
+  border-color: #d9534f !important;
+}
+
+.invalid-feedback {
+
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.no-gutters {
+  padding: 0;
+  margin: 0;
+}

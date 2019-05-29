@@ -1,0 +1,8 @@
+<h4 class="page-header">Orders per day</h4>
+<app-pie-chart *ngIf="data.length>0" [pieChartData]="pieChartData" [pieChartLabels]="pieChartLabels"></app-pie-chart>
+<div *ngIf="data.length==0 && dataFetched;" class="text-center">
+  <h2>No orders exist for that user</h2>
+  <div class="error-details">
+    Please select different user!
+  </div>
+</div>

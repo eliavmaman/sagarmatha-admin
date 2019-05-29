@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">User Maintenance</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form *ngIf="userModel" #addUpdateFrm="ngForm" (ngSubmit)="saveOrUpdate(addUpdateFrm.valid)">
+    <div class="form-group" [ngClass]="{'has-danger':name.invalid && isFormSubmited}">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="userModel.name" name="name" #name="ngModel" class="form-control"
+             required>
+      <div *ngIf="name.invalid && isFormSubmited" class="invalid-feedback">
+        Name is Required.
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-danger':email.invalid && isFormSubmited}">
+      <label>Email</label>
+      <input type="text" #email="ngModel" [(ngModel)]="userModel.email" name="email" class="form-control"
+             required="">
+      <div *ngIf="email.invalid && isFormSubmited" class="invalid-feedback">
+        Email name is Required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Role</label>
+      <select class="form-control" id="business_type" required [(ngModel)]="userModel.role" name="role">
+        <option [value]="'customer'">Customer</option>
+        <option [value]="'admin'">Admin</option>
+      </select>
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" [ngClass]="mode=='edit'?'btn-warning':'btn-primary'"
+           value="{{btnText}}"/>
+
+  </form>
+
+</div>
+
+
+
